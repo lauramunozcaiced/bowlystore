@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bowly Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-geocoding@v2.0.0/dist/css/L.Control.OpenCageGeocoding.min.css" />
+</head>
+
+<body>
+    <header class="container">
+        <div class="row header-container">
+            <a href="" class="logo"><img src="./assets/images/bowlyLogo.svg" alt=""></a>
+            <nav>
+                <ul>
+                    <li><a href="#bowlyes">Bowlyes</a></li>
+                    <li><a href="">Mis pedidos</a></li>
+                    <li><button id="openCar"><i class="ri-shopping-cart-line"></i></button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section id="home" class="home">
+            <div class="row">
+                <div class="column-left introduction">
+                    <div class="introductionText">
+                        <h2>Escoge tu</h2>
+                        <h1>Bowly Favorito</h1>
+                        <p>La mejor opción para cuidar de tu alimentación!</p>
+                        <p>Hay un Bowly para cada ocasión, para cada persona y por cada gusto.</p>
+                        <button class="green">Pide tu Bowly</button>
+
+                        <p class="littleText">*Aunque los bowls se ven deliciosos, este es un proyecto web,
+                            no una tienda real, las imágenes se han sacado de internet.
+                            Pero puedes simular hacer un pedido.</p>
+                    </div>
+                </div>
+                <div class="column-right introductionBowl">
+                    <img src="./assets/images/mainbowl.png" alt="">
+                </div>
+            </div>
+            <div class="row mt-10 categories">
+                <div class="categoriesBowls">
+                    <div>
+                        <img src="./assets/images/moraAzulBowl.png" alt="">
+                        <p><strong>Para Desayunar</strong></p>
+                    </div>
+                    <div>
+                        <img src="./assets/images/buddahBowl.png" alt="">
+                        <p><strong>Para Almorzar</strong></p>
+                    </div>
+                    <div>
+                        <img src="./assets/images/veggieBowl.png" alt="">
+                        <p><strong>Vegetarianos</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="bowlyes" class="section">
+            <h2>Nuestros Bowlys</h2>
+            <div>
+                <h3>Para desayunar</h3>
+                <div id="desayunosBowls" class="desayunosBowls"></div>
+            </div>
+            <div>
+                <h3>Para el día</h3>
+                <div id="almuerzosBowls" class="almuerzosBowls"></div>
+            </div>
+            <div>
+                <h3>Vegetarianos</h3>
+                <div id="vegetarianosBowls" class="vegetarianosBowls"></div>
+            </div>
+        </section>
+        <div id="car" class="car">
+            <div class="header">
+                <button class="link">Vaciar</button>
+                <h3>Tu Canasta</h3>
+                <button class="close closer" data-target="#car"><i class="ri-close-line"></i></button>
+            </div>
+            <div id="order" class="order"></div>
+            <div id="summary" class="summary">
+                <div><p>Productos</p><p id="amountProducts"></p></div>
+                <div>
+                    <p>
+                        <span>Costo de envío</span>
+                        <button class="link link-small">Cambiar Ubicación</button>
+                    </p>
+                    <p id="deliveryPrice">Pendiente</p>
+                </div>
+                <p id="error" class="littleText red"></p>
+                <div class="subtotalContainer">
+                    <h3>Subtotal</h3>
+                    <h3 id="subtotal"></h3>
+                </div>
+                <div>
+                    <p class="red">Descuento 100% visitante*</p>
+                    <p class="red" id="bono"></p>
+                </div>
+                <p class="littleText red">*Válido por visitar mi proyecto y dar opiniones sobre este
+                    en la publicación de LinkedIn.
+                    <a class="link" href="#" target="_blank">Ver publicación de Linkedin</a>
+                </p>
+            </div>
+            <div id="totalContainer" class="total">
+                <div>
+                    <h3>Total a pagar</h3>
+                    <h2 id="total"></h2>
+                </div>
+                <div><button class="white" disabled>Hacer Pedido</button></div>
+            </div>
+        </div>
+        <div id="myorders" class="myorders">
+            <div class="header">
+                <button class="link"></button>
+                <h3>Tus Pedidos</h3>
+                <button class="close closer" data-target="#myorders"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="container">
+                <h4>En distribución</h4>
+                <div class="activeOrders">
+                    <!--<div class="delivery">
+                        <h4>Pedido #12345667</h4>
+                        <p>(2) Bowly Edame, (3) Bowly Chocolatoso</p>
+                        <p>Valor de los productos <b>$25.000</b></p>
+                        <div class="progressBar">
+                            <div class="progress"></div>
+                        </div>
+                        <small>En reparto, se entregará en <b>20 minutos</b></small>
+                        <div class="button">
+                            <button>Cancelar</button>
+                            <small>Puede cancelar sólo en los primeros 5 min</small>
+                        </div>
+                       
+                    </div> -->
+                </div>
+            </div>
+            <div class="container">
+                <h4>Historial de pedidos</h4>
+                <div class="historyOrders">
+                    <!--<div class="delivery">
+                        <h4>Pedido #12345667</h4>
+                        <p>(2) Bowly Edame, (3) Bowly Chocolatoso</p>
+                        <p><span>Valor de los productos </span>
+                        <span><b>$25.000</b></span></p>
+                        <div class="state">Entregado</div>
+                    </div>-->
+                    
+                </div>
+            </div>  
+        </div>
+        <div id="changeLocation" class="changeLocation">
+            <div>
+                <button class="close closer" data-target="#changeLocation"><i class="ri-close-line"></i></button>
+                <br><br>
+                <div class="text-center">
+                    <p>Seleccione el lugar de entrega de su pedido</p>
+                    <small><strong>*Sólo envíos en Cali - Colombia.</strong></small>
+                </div>
+                <br>
+                <div id="map"></div>
+                <small><strong id="error" class="error"></strong></small>
+                <br>
+                <button id="saveLocationMap" data-target="#changeLocation" class="green right closer" disabled>
+                Save Location</button><br><br>
+                <button class="link right"><small>No encuentras tu ubicación en el mapa?</small></button><br><br><br>
+
+                <div class="form" hidden>
+                    <p>Si no encuentras tu dirección, también puedes dejar tus datos para la entrega: </p>
+                    <small><strong>*Sólo hacemos envíos en Cali, Colombia</strong></small>
+                    <form>
+                        <input type="text" name="address" required placeholder="Address">
+                        <input type="text" name="postalCode" placeholder="Postal Code" required>
+
+                        <button type="submit">Save Address</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>©All Rights reserved | Laura Muñoz | <a href="https://www.linkedin.com/in/lauramunozcaicedo/" target="_blank"><i class="ri-linkedin-fill"></i></a> <a href="mailto:lauramunozcaicedo9@gmail.com"><i class="ri-mail-line"></i></a> </p>
+    </footer>
+</body>
+<!-- leaflet js -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-geocoding@v2.0.0/dist/js/L.Control.OpenCageGeocoding.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./src/js/bowls.js"></script>
+<script src="./src/js/nodes.js"></script>
+<script src="./src/js/locationFns.js"></script>
+<script src="./src/js/global.js"></script>
+<script src="./src/js/map.js"></script>
+<script src="./src/js/events.js"></script>
+<script src="./src/js/main.js"></script>
+
+</html>

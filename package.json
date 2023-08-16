@@ -1,0 +1,11 @@
+{
+  "name": "bowlystore",
+  "version": "1.0.0",
+  "description": "Bowly Store is a bowls sales portfolio project made by Laura Muñoz in the course of Layout and Animation css by Platzi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

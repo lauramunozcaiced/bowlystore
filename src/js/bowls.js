@@ -1,11 +1,11 @@
 const storeBowls = [{
-    name: 'Mora Azul',
+    name: 'Blueberries',
     image: 'moraAzulBowl.png',
     description: 'Bowl de yogurt de mora con arándanos, kiwis, moras y frambuesas.',
     price: 20000,
     type: 'desayuno'
 }, {
-    name: 'Frutos Silvestres',
+    name: 'Wild Fruits',
     image: 'frutosSilvestresBowl.png',
     description: 'Bowl con fresas, arándanos, frambuesas, mango, avena y almendras.',
     price: 20000,

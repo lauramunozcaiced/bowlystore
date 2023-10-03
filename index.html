@@ -20,7 +20,11 @@
         crossorigin="" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-geocoding@v2.0.0/dist/css/L.Control.OpenCageGeocoding.min.css" />
-</head>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    </head>
 
 <body>
     <header class="container">
@@ -29,8 +33,8 @@
             <nav>
                 <ul>
                     <li><a href="#bowlyes">Bowlyes</a></li>
-                    <li><a href="">Mis pedidos</a></li>
-                    <li><button id="openCar"><i class="ri-shopping-cart-line"></i></button></li>
+                    <li><button id="openMyOrder" class="noBtn">My orders</button></li>
+                    <li><button id="openCar" class="noBtn"><i class="ri-shopping-cart-line"></i></button></li>
                 </ul>
             </nav>
         </div>
@@ -40,68 +44,68 @@
             <div class="row">
                 <div class="column-left introduction">
                     <div class="introductionText">
-                        <h2>Escoge tu</h2>
-                        <h1>Bowly Favorito</h1>
-                        <p>La mejor opción para cuidar de tu alimentación!</p>
-                        <p>Hay un Bowly para cada ocasión, para cada persona y por cada gusto.</p>
-                        <button class="green">Pide tu Bowly</button>
+                        <h2>Choose your</h2>
+                        <h1 class="animate__animated animate__headShake">Favorite Bowly</h1>
+                        <p>The best option to take care of your diet!</p>
+                        <p>We have a Bowly for every occasion, for every person and for every preference.</p>
+                        <a href="#bowlyes" class="green">Buy your Bowly</a>
 
-                        <p class="littleText">*Aunque los bowls se ven deliciosos, este es un proyecto web,
-                            no una tienda real, las imágenes se han sacado de internet.
-                            Pero puedes simular hacer un pedido.</p>
+                        <p class="littleText">*Although the bowls look delicious, this is a web development 
+                            project, not a real store, the images are taken from the internet. But you can 
+                            simulate making an order.</p>
                     </div>
                 </div>
-                <div class="column-right introductionBowl">
-                    <img src="./assets/images/mainbowl.png" alt="">
+                <div class="column-right introductionBowl animate__animated animate__tada">
+                    <img class="" src="./assets/images/mainbowl.png" alt="">
                 </div>
             </div>
             <div class="row mt-10 categories">
                 <div class="categoriesBowls">
                     <div>
                         <img src="./assets/images/moraAzulBowl.png" alt="">
-                        <p><strong>Para Desayunar</strong></p>
+                        <p><strong>For breakfast</strong></p>
                     </div>
                     <div>
                         <img src="./assets/images/buddahBowl.png" alt="">
-                        <p><strong>Para Almorzar</strong></p>
+                        <p><strong>For lunch</strong></p>
                     </div>
                     <div>
                         <img src="./assets/images/veggieBowl.png" alt="">
-                        <p><strong>Vegetarianos</strong></p>
+                        <p><strong>For vegetarians</strong></p>
                     </div>
                 </div>
             </div>
         </section>
         <section id="bowlyes" class="section">
-            <h2>Nuestros Bowlys</h2>
+            <h2>Our Bowlys</h2>
             <div>
-                <h3>Para desayunar</h3>
+                <h3>For breakfast</h3>
                 <div id="desayunosBowls" class="desayunosBowls"></div>
             </div>
             <div>
-                <h3>Para el día</h3>
+                <h3>For lunch</h3>
                 <div id="almuerzosBowls" class="almuerzosBowls"></div>
             </div>
             <div>
-                <h3>Vegetarianos</h3>
+                <h3>For vegetarians</h3>
                 <div id="vegetarianosBowls" class="vegetarianosBowls"></div>
             </div>
         </section>
         <div id="car" class="car">
             <div class="header">
-                <button class="link">Vaciar</button>
-                <h3>Tu Canasta</h3>
+                <button class="link">Empty</button>
+                <h3>Your Basket</h3>
                 <button class="close closer" data-target="#car"><i class="ri-close-line"></i></button>
             </div>
             <div id="order" class="order"></div>
             <div id="summary" class="summary">
-                <div><p>Productos</p><p id="amountProducts"></p></div>
+                <div><p>Products</p><p id="amountProducts"></p></div>
                 <div>
                     <p>
-                        <span>Costo de envío</span>
-                        <button class="link link-small">Cambiar Ubicación</button>
+                        <span>Shipping Cost</span>
+                        <button class="link link-small">Change Location</button>
                     </p>
-                    <p id="deliveryPrice">Pendiente</p>
+                    <p id="deliveryPrice">Pending</p>
                 </div>
                 <p id="error" class="littleText red"></p>
                 <div class="subtotalContainer">
@@ -109,59 +113,35 @@
                     <h3 id="subtotal"></h3>
                 </div>
                 <div>
-                    <p class="red">Descuento 100% visitante*</p>
+                    <p class="red">100% discount for visitors*</p>
                     <p class="red" id="bono"></p>
                 </div>
-                <p class="littleText red">*Válido por visitar mi proyecto y dar opiniones sobre este
-                    en la publicación de LinkedIn.
-                    <a class="link" href="#" target="_blank">Ver publicación de Linkedin</a>
+                <p class="littleText red">*Valid for visiting my project and 
+                    giving feedback on it in the LinkedIn post.
+                    <a class="link" href="#" target="_blank">See Linkedin Post</a>
                 </p>
             </div>
             <div id="totalContainer" class="total">
                 <div>
-                    <h3>Total a pagar</h3>
+                    <h3>Total Amount</h3>
                     <h2 id="total"></h2>
                 </div>
-                <div><button class="white" disabled>Hacer Pedido</button></div>
+                <div><button class="white" disabled>Checkout</button></div>
             </div>
         </div>
         <div id="myorders" class="myorders">
             <div class="header">
                 <button class="link"></button>
-                <h3>Tus Pedidos</h3>
+                <h3>Your orders</h3>
                 <button class="close closer" data-target="#myorders"><i class="ri-close-line"></i></button>
             </div>
             <div class="container">
-                <h4>En distribución</h4>
-                <div class="activeOrders">
-                    <!--<div class="delivery">
-                        <h4>Pedido #12345667</h4>
-                        <p>(2) Bowly Edame, (3) Bowly Chocolatoso</p>
-                        <p>Valor de los productos <b>$25.000</b></p>
-                        <div class="progressBar">
-                            <div class="progress"></div>
-                        </div>
-                        <small>En reparto, se entregará en <b>20 minutos</b></small>
-                        <div class="button">
-                            <button>Cancelar</button>
-                            <small>Puede cancelar sólo en los primeros 5 min</small>
-                        </div>
-                       
-                    </div> -->
-                </div>
+                <h4>On Delivery</h4>
+                <div class="activeOrders"></div>
             </div>
             <div class="container">
-                <h4>Historial de pedidos</h4>
-                <div class="historyOrders">
-                    <!--<div class="delivery">
-                        <h4>Pedido #12345667</h4>
-                        <p>(2) Bowly Edame, (3) Bowly Chocolatoso</p>
-                        <p><span>Valor de los productos </span>
-                        <span><b>$25.000</b></span></p>
-                        <div class="state">Entregado</div>
-                    </div>-->
-                    
-                </div>
+                <h4>Order History</h4>
+                <div class="historyOrders"></div>
             </div>  
         </div>
         <div id="changeLocation" class="changeLocation">
@@ -169,8 +149,8 @@
                 <button class="close closer" data-target="#changeLocation"><i class="ri-close-line"></i></button>
                 <br><br>
                 <div class="text-center">
-                    <p>Seleccione el lugar de entrega de su pedido</p>
-                    <small><strong>*Sólo envíos en Cali - Colombia.</strong></small>
+                    <p>Choose the place of delivery of your order</p>
+                    <small><strong>*Only shipments in Cali - Colombia.</strong></small>
                 </div>
                 <br>
                 <div id="map"></div>
@@ -178,11 +158,11 @@
                 <br>
                 <button id="saveLocationMap" data-target="#changeLocation" class="green right closer" disabled>
                 Save Location</button><br><br>
-                <button class="link right"><small>No encuentras tu ubicación en el mapa?</small></button><br><br><br>
+                <button class="link right"><small>Can't find your location on the map?</small></button><br><br><br>
 
                 <div class="form" hidden>
-                    <p>Si no encuentras tu dirección, también puedes dejar tus datos para la entrega: </p>
-                    <small><strong>*Sólo hacemos envíos en Cali, Colombia</strong></small>
+                    <p>If you cannot find your address, you can also leave your delivery information:</p>
+                    <small><strong>*Only shipments in Cali - Colombia.</strong></small>
                     <form>
                         <input type="text" name="address" required placeholder="Address">
                         <input type="text" name="postalCode" placeholder="Postal Code" required>

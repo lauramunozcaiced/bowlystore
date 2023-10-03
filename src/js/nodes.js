@@ -10,6 +10,9 @@ const vegetarianosBowlsContainer = document.querySelector('#vegetarianosBowls');
 /*Car */
 const car = document.querySelector('#car');
 
+/* My Orders*/
+const myorders = document.querySelector('#myorders');
+
 /*Car => Order */
 const orderCarContainer = document.querySelector('#car #order');
 
@@ -39,3 +42,4 @@ const oldOrders = document.querySelector('#myorders .historyOrders');
 /* Others */
 const closeButtons = document.querySelectorAll('.closer');
 const openCarButton = document.querySelector('#openCar');
+const openMyOrderButton = document.querySelector('#openMyOrder');

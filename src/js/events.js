@@ -1,5 +1,6 @@
 changeLocationButton.addEventListener('click', () => changeLocation.classList.add('open'));
-openCar.addEventListener('click', () => car.classList.add('open'));
+openCarButton.addEventListener('click', () => car.classList.add('open'));
+openMyOrderButton.addEventListener('click', () => myorders.classList.add('open'));
 
 closeButtons.forEach(element => {
     element.addEventListener('click', () =>{document.querySelector(element.dataset.target).classList.remove('open')})
@@ -18,7 +19,8 @@ createOrderButton.addEventListener('click', () => {
         resetPreOrder();
         updateCar();
         updateMyOrders();
-
+        car.classList.remove('open');
+        myorders.classList.add('open');
     }
 })
 

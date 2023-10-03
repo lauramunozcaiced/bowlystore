@@ -21,9 +21,9 @@ function createBowl(bowlData){
     input.setAttribute('min', 1);
     input.setAttribute('max', 50);
     input.value = 1;
-    button.innerText = 'Añadir'
+    button.innerText = 'Add to cart'
     button.classList.add('green');
-    priceBold.innerText = '$'+ bowlData.price;
+    priceBold.innerText = '$'+ numberWithPoints(bowlData.price);
     button.addEventListener('click', (e)=>{
         const item = [bowlData, parseInt(input.value)];
         preOrder.order.push(item);
@@ -58,7 +58,7 @@ function createItem(itemData){
     item.classList.add('carItem');
     image.src = './assets/images/'+itemData[0].image;
     name.innerText = itemData[0].name;
-    price.innerText = '$'+itemData[0].price;
+    price.innerText = '$'+numberWithPoints(itemData[0].price);
     price.classList.add('price');
     (itemData[1] > 1)? buttonMinus.innerHTML= '<i class="ri-subtract-fill"></i>' : buttonMinus.innerHTML = '<i class="ri-delete-bin-line"></i>';
     number.innerText = itemData[1];
@@ -120,7 +120,12 @@ function createDelivery(order){
 
         if(time > 0){
             progress.style.width = `${percentTime}%`;
-            minutes.innerText = Math.floor(time/1000) + ' segundos';
+            minutes.innerText = Math.floor(time/60000) + ' minutos';
+            if(time <= ((order.timeDeliveryMinutes*60000)-300000)){
+                cancel.setAttribute('disabled', true);
+                cancel.classList.add('disabled');
+                cancelAd.classList.add('disabled');
+            }
         }else{
             clearInterval(interval);
             order.state = 'delivered';
@@ -145,9 +150,14 @@ function createDelivery(order){
     });
     description.innerText = text;
     productValue.innerText = 'Valor de los productos ';
-    amount.innerText = `$${order.amount}`;
+    amount.innerText = `$${numberWithPoints(order.amount)}`;
     small.innerText = 'En reparto, se entregará en ';
-    
+    cancel.addEventListener('click', ()=>{
+        clearInterval(interval);
+        order.state = 'cancelled';
+        updateMyOrders();
+        delivery.remove()
+    })
 
     progressBar.append(progress);
     delivery.append(progressBar);
@@ -173,15 +183,18 @@ function createHistoryOrder(order){
     const state = document.createElement('div');
 
     historyOrder.classList.add('delivery');
-    title.innerText = `Pedido #${order.code}`;
+    title.innerText = `Order #${order.code}`;
     let text = '';
     order.order.forEach(element => {
         text += `(${element[1]}) ${element[0].name} `
     });
     description.innerText = text;
-    productValue.innerText = 'Valor de los productos ';
-    amount.innerText = `$${order.amount}`;
+    productValue.innerText = 'Products Amount: ';
+    amount.innerText = `$${numberWithPoints(order.amount)}`;
     state.classList.add('state');
+    if(order.state == 'cancelled'){
+        state.classList.add('cancelled');
+    }
     state.innerText = `${order.state}`;
 
     historyOrder.append(title);
@@ -223,7 +236,7 @@ function updateMyOrders(){
 
     if(inHistory.length > 0){
         oldOrders.innerHTML = '';
-        inHistory.forEach(function(item, index){
+        inHistory.reverse().forEach(function(item, index){
             oldOrders.append(createHistoryOrder(item));
         })
     }else{
@@ -253,15 +266,15 @@ function updateCar(){
         const subtotal = (preOrder.amount + preOrder.delivery);
         const total =  subtotal - (subtotal*preOrder.bono/100);
 
-        amountProducts.innerText = '$'+ preOrder.amount;
-        amountSubtotal.innerText = '$'+ subtotal;
-        amountBono.innerText = '-$'+(subtotal*preOrder.bono/100);
-        amountTotal.innerText = '$'+ total; 
+        amountProducts.innerText = '$'+ numberWithPoints(preOrder.amount);
+        amountSubtotal.innerText = '$'+ numberWithPoints(subtotal);
+        amountBono.innerText = '-$'+ numberWithPoints(subtotal*preOrder.bono/100);
+        amountTotal.innerText = '$'+ numberWithPoints(total); 
 
         if(preOrder.delivery > 0){
             createOrderButton.disabled = false;
             orderError.innerText = '';
-            deliveryPrice.innerText = `$ ${preOrder.delivery}` 
+            deliveryPrice.innerText = `$ ${numberWithPoints(preOrder.delivery)}` 
         }else{
             createOrderButton.disabled = true;
             orderError.innerText = 'Debes escoger una ubicación para realizar el pedido';
@@ -305,11 +318,23 @@ function resetPreOrder(){
         state: '',
         order: [],
         delivery: 0,
-        timeDeliveryMinutes: 1,
+        timeDeliveryMinutes: 45,
         deliveryDate: '',
         amount: 0,
         bono: 100,
         location: {}
     };
     
+}
+
+function numberWithPoints(nStr){
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? ',' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }

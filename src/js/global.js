@@ -10,7 +10,7 @@ let preOrder = {
     state: '',
     order: [],
     delivery: 0,
-    timeDeliveryMinutes: 1,
+    timeDeliveryMinutes: 45,
     deliveryDate: '',
     amount: 0,
     bono: 100,

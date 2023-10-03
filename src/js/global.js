@@ -1,6 +1,7 @@
 let locationUser;
 //localStorage.removeItem('historyOrders');
 verifyLSLocation();
+verifyscreen();
 
 let historyOrders = [];
 
@@ -34,4 +35,11 @@ function verifyLSHistoryOrders(){
     }
 }
 
+function verifyscreen(){
+    if(screen.width < 523){
+        navContainer.classList.add('mobile');
+    }else{
+        navContainer.classList.remove('mobile');
+    }
+}
 

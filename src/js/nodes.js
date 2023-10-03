@@ -43,3 +43,8 @@ const oldOrders = document.querySelector('#myorders .historyOrders');
 const closeButtons = document.querySelectorAll('.closer');
 const openCarButton = document.querySelector('#openCar');
 const openMyOrderButton = document.querySelector('#openMyOrder');
+
+/* Nav */
+const navContainer = document.querySelector('.navContainer');
+const nav = document.querySelector('nav');
+const navMobileButton = document.querySelector('#navMobile');

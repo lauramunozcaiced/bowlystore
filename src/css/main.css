@@ -139,16 +139,59 @@ footer {
   padding: 1rem 0;
   height: 85px;
 }
+@media (max-width: 522px) {
+  .header-container {
+    justify-content: space-between;
+  }
+}
 .header-container .logo img {
   width: 160px;
 }
+.header-container .navContainer {
+  position: relative;
+  padding-left: 1rem;
+}
+.header-container #navMobile {
+  display: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+@media (max-width: 522px) {
+  .header-container #navMobile {
+    display: block;
+  }
+}
+.header-container .mobile nav {
+  background-color: white;
+  z-index: 1;
+  display: none;
+}
+.header-container .mobile nav.active {
+  display: block;
+}
 .header-container nav {
+  display: block;
   margin-left: 5rem;
+}
+@media (max-width: 522px) {
+  .header-container nav {
+    position: absolute;
+    right: 0;
+  }
 }
 .header-container nav ul {
   display: flex;
   list-style: none;
   gap: 30px;
+}
+@media (max-width: 522px) {
+  .header-container nav ul {
+    flex-direction: column;
+    width: 160px;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.0901960784);
+    gap: 5px;
+    padding: 0.8rem;
+  }
 }
 .header-container nav ul li a {
   text-decoration: none;
@@ -304,7 +347,7 @@ footer {
 
 .desayunosBowls, .almuerzosBowls, .vegetarianosBowls {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 15px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   align-items: stretch;
   padding: 2.5em 0;
@@ -335,9 +378,9 @@ footer {
   margin-right: 0.7rem;
 }
 .desayunosBowls .bowl .buy input::-webkit-inner-spin-button, .almuerzosBowls .bowl .buy input::-webkit-inner-spin-button, .vegetarianosBowls .bowl .buy input::-webkit-inner-spin-button {
-  opacity: 0.4;
-  height: 30px;
-  padding: 0.5em 0.1rem !important;
+  opacity: 0.2;
+  height: 40px;
+  padding: 0 0.4rem !important;
   cursor: pointer;
 }
 
@@ -350,6 +393,7 @@ footer {
   position: fixed;
   right: 0;
   width: 460px;
+  max-width: 100%;
   z-index: 9;
   top: 0;
   background-color: #FFFFFF;
@@ -432,6 +476,7 @@ footer {
   display: none;
   position: fixed;
   width: 460px;
+  max-width: 100%;
   top: 0;
   right: 0;
   background-color: #FFFFFF;
@@ -570,7 +615,7 @@ footer {
 }
 .changeLocation > div .close {
   position: absolute;
-  top: 0;
+  top: 30px;
   right: 0;
   padding: 0.5rem;
 }

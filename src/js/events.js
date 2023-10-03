@@ -24,3 +24,5 @@ createOrderButton.addEventListener('click', () => {
     }
 })
 
+window.addEventListener("resize", ()=> verifyscreen())
+navMobileButton.addEventListener("click", ()=> nav.classList.toggle('active'));

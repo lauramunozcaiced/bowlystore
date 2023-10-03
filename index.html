@@ -30,13 +30,17 @@
     <header class="container">
         <div class="row header-container">
             <a href="" class="logo"><img src="./assets/images/bowlyLogo.svg" alt=""></a>
-            <nav>
-                <ul>
-                    <li><a href="#bowlyes">Bowlyes</a></li>
-                    <li><button id="openMyOrder" class="noBtn">My orders</button></li>
-                    <li><button id="openCar" class="noBtn"><i class="ri-shopping-cart-line"></i></button></li>
-                </ul>
-            </nav>
+            <div class="navContainer">
+                <button id="navMobile"><i class="ri-menu-3-line"></i></button>
+                <nav>
+                    <ul>
+                        <li><a href="#bowlyes">Bowlyes</a></li>
+                        <li><button id="openMyOrder" class="noBtn">My orders</button></li>
+                        <li><button id="openCar" class="noBtn"><i class="ri-shopping-cart-line"></i></button></li>
+                    </ul>
+                </nav>
+            </div>
+            
         </div>
     </header>
     <main class="container">
@@ -63,15 +67,15 @@
                 <div class="categoriesBowls">
                     <div>
                         <img src="./assets/images/moraAzulBowl.png" alt="">
-                        <p><strong>For breakfast</strong></p>
+                        <p><strong>Breakfast</strong></p>
                     </div>
                     <div>
                         <img src="./assets/images/buddahBowl.png" alt="">
-                        <p><strong>For lunch</strong></p>
+                        <p><strong>Lunch</strong></p>
                     </div>
                     <div>
                         <img src="./assets/images/veggieBowl.png" alt="">
-                        <p><strong>For vegetarians</strong></p>
+                        <p><strong>Vegetarians</strong></p>
                     </div>
                 </div>
             </div>
@@ -79,7 +83,8 @@
         <section id="bowlyes" class="section">
             <h2>Our Bowlys</h2>
             <div>
-                <h3>For breakfast</h3>
+                <br>
+                <h3>For Breakfast</h3>
                 <div id="desayunosBowls" class="desayunosBowls"></div>
             </div>
             <div>

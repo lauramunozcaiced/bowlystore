@@ -142,18 +142,54 @@ footer{
     align-items: center;
     padding: 1rem 0;
     height: $headerHeight;
+    @media (max-width: 522px){
+       justify-content: space-between;
+    }
     .logo {
         img {
             width: 160px;
         }
     }
-
+    .navContainer{
+        position: relative;
+        padding-left: 1rem;
+    }
+    #navMobile{
+        display: none;
+        background-color: transparent;
+        font-size: 16px;
+        @media (max-width: 522px){
+            display: block;
+        }
+    }
+    .mobile{
+        nav{
+            background-color: white;
+            z-index: 1;
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+    }
     nav {
+        display: block;
         margin-left: 5rem;
+        @media (max-width: 522px){
+            position: absolute;
+           right: 0;
+        }
         ul {
             display: flex;
             list-style: none;
             gap: 30px;
+            @media (max-width: 522px){
+                flex-direction: column;
+                width: 160px;
+                box-shadow: 0 0 5px #80808017;
+                gap: 5px;
+                padding: 0.8rem;
+            }
 
             li {
                 a {
@@ -307,7 +343,7 @@ footer{
 
 .desayunosBowls, .almuerzosBowls, .vegetarianosBowls{
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
     align-items: stretch;
     padding: 2.5em 0;
@@ -334,9 +370,9 @@ footer{
                 border-radius: 5px;
                 margin-right: .7rem;
                 &::-webkit-inner-spin-button {
-                    opacity: 0.4;
-                    height: 30px;
-                    padding: .5em .1rem!important;
+                    opacity: 0.2;
+                    height: 40px;
+                    padding: 0 .4rem!important;
                     cursor: pointer;
                   }
             }
@@ -352,6 +388,7 @@ footer{
     position: fixed;
     right: 0;
     width: 460px;
+    max-width: 100%;
     z-index: 9;
     top: 0;
     background-color: $white;
@@ -435,6 +472,7 @@ footer{
     display: none;
     position: fixed;
     width: 460px;
+    max-width: 100%;
     top: 0;
     right: 0;
     background-color: $white;
@@ -575,7 +613,7 @@ footer{
         height: fit-content;
         .close{
             position: absolute;
-            top: 0;
+            top: 30px;
             right: 0;
             padding: .5rem;
         }

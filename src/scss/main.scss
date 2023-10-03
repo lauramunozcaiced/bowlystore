@@ -480,6 +480,7 @@ footer{
     max-height: 100vh;
     overflow: auto;
     padding-top: 3rem;
+    z-index: 2;
     &.open{
         display: block;
     }
